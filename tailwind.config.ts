@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-accent': 'linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-secondary)) 100%)',
+      },
+      boxShadow: {
+        'glow': '0 0 20px -5px hsl(var(--accent) / 0.5)',
+        'glow-lg': '0 0 40px -10px hsl(var(--accent) / 0.6)',
       },
       borderRadius: {
         lg: "var(--radius)",

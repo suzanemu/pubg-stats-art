@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import modernBg from "@/assets/modern-bg.jpg";
 
 export interface TeamData {
   rank: number;
@@ -23,99 +24,123 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
     return (
       <div
         ref={ref}
-        className="relative w-[1200px] h-auto bg-cover bg-center p-12"
-        style={{ backgroundImage: `url('/src/assets/background-texture.jpg')` }}
+        className="relative w-[1400px] min-h-[1000px] bg-cover bg-center p-16"
+        style={{ 
+          backgroundImage: `linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%), url(${modernBg})`,
+        }}
       >
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl font-black tracking-wider text-secondary uppercase">
+        {/* Header Section */}
+        <div className="mb-12">
+          <div className="flex items-end justify-between mb-8">
+            <div className="space-y-2">
+              <h2 className="text-5xl font-black tracking-tight bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent uppercase">
                 {title}
               </h2>
-              <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide">
+              <p className="text-lg font-semibold text-gray-400 uppercase tracking-wider">
                 {subtitle}
               </p>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <span className="text-accent text-5xl font-black uppercase tracking-tight">
-                  {day.split(" ")[0]}
-                </span>
-              </div>
-              <div className="text-center">
-                <span className="text-secondary text-6xl font-black uppercase">
-                  {day.split(" ")[1] || ""}
-                </span>
+            <div className="text-right">
+              <div className="text-7xl font-black bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent uppercase leading-none">
+                {day}
               </div>
             </div>
           </div>
           
-          <div className="border-b-4 border-accent mb-6"></div>
+          <div className="h-1 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 rounded-full shadow-glow"></div>
         </div>
 
-        {/* Table Header */}
-        <div className="grid grid-cols-7 gap-2 mb-2">
-          <div className="bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            #
+        {/* Table Container */}
+        <div className="space-y-3">
+          {/* Header Row */}
+          <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+              Rank
+            </div>
+            <div className="col-span-4 text-white font-black text-sm uppercase tracking-wider">
+              Team Name
+            </div>
+            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+              Wins
+            </div>
+            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+              Place Pts
+            </div>
+            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+              Kill Pts
+            </div>
+            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+              Total
+            </div>
           </div>
-          <div className="col-span-2 bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            Team Name
-          </div>
-          <div className="bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            Wins
-          </div>
-          <div className="bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            Place Pts.
-          </div>
-          <div className="bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            Kills Pts.
-          </div>
-          <div className="bg-accent text-accent-foreground font-black text-center py-3 px-2 skew-x-[-2deg] text-sm uppercase">
-            Total Pts.
-          </div>
-        </div>
 
-        {/* Table Rows */}
-        <div className="space-y-1">
-          {teams.map((team, index) => {
+          {/* Team Rows */}
+          {teams.map((team) => {
             const isTopSeven = team.rank <= 7;
             return (
               <div
-                key={index}
-                className={`grid grid-cols-7 gap-2 ${
-                  isTopSeven 
-                    ? "bg-gradient-to-r from-accent/20 to-accent/10 border-l-4 border-accent" 
-                    : index % 2 === 0 
-                    ? "bg-[hsl(var(--table-row-dark))]" 
-                    : "bg-[hsl(var(--table-row-light))]"
+                key={team.rank}
+                className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                  isTopSeven
+                    ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
+                    : team.rank % 2 === 0
+                    ? "bg-slate-800/50"
+                    : "bg-slate-800/30"
                 }`}
               >
-                <div className={`font-black text-center py-4 px-2 flex items-center justify-center text-lg ${
-                  isTopSeven ? "text-accent" : "text-accent-foreground"
+                {/* Rank */}
+                <div className={`col-span-1 flex items-center justify-center ${
+                  isTopSeven 
+                    ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                    : "text-2xl font-bold text-gray-400"
                 }`}>
                   {team.rank}
                 </div>
-                <div className={`col-span-2 font-bold py-4 px-4 flex items-center text-base uppercase tracking-wide ${
-                  isTopSeven ? "text-accent" : "text-white"
+
+                {/* Team Name */}
+                <div className={`col-span-4 flex items-center ${
+                  isTopSeven
+                    ? "text-xl font-bold text-white"
+                    : "text-xl font-semibold text-gray-300"
                 }`}>
                   {team.teamName}
                 </div>
-                <div className="text-white font-bold text-center py-4 px-2 flex items-center justify-center">
-                  <span className="text-accent text-xl">✓</span>
-                  <span className="ml-2">{team.firstPlaceWins}</span>
+
+                {/* Wins */}
+                <div className="col-span-2 flex items-center justify-center gap-2">
+                  {team.firstPlaceWins > 0 && (
+                    <>
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                        <span className="text-white text-xs font-black">✓</span>
+                      </div>
+                      <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
+                    </>
+                  )}
+                  {team.firstPlaceWins === 0 && (
+                    <span className="text-lg font-semibold text-gray-500">-</span>
+                  )}
                 </div>
-                <div className={`font-bold text-center py-4 px-2 flex items-center justify-center text-lg ${
-                  isTopSeven ? "text-accent" : "text-white"
+
+                {/* Placement Points */}
+                <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  isTopSeven ? "text-orange-400" : "text-gray-300"
                 }`}>
                   {team.placementPoints}
                 </div>
-                <div className={`font-bold text-center py-4 px-2 flex items-center justify-center text-lg ${
-                  isTopSeven ? "text-accent" : "text-white"
+
+                {/* Kill Points */}
+                <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  isTopSeven ? "text-orange-400" : "text-gray-300"
                 }`}>
                   {team.killPoints}
                 </div>
-                <div className="text-accent font-black text-center py-4 px-2 flex items-center justify-center text-xl">
+
+                {/* Total Points */}
+                <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
+                  isTopSeven
+                    ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                    : "text-gray-400"
+                }`}>
                   {team.totalPoints}
                 </div>
               </div>
@@ -124,10 +149,10 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
         </div>
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t-2 border-muted flex items-center justify-center gap-8">
-          <div className="text-secondary font-bold text-sm uppercase tracking-wider">
-            PUBG Mobile Tournament
-          </div>
+        <div className="mt-12 pt-6 border-t border-gray-700/50 text-center">
+          <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+            PUBG Mobile Tournament Standings
+          </p>
         </div>
       </div>
     );
