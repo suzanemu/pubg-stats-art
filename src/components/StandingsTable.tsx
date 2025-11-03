@@ -101,7 +101,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Rank */}
                   <div className={`col-span-1 flex items-center justify-center ${
                     isTopSeven 
-                      ? "text-xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      ? "text-xl font-black text-orange-500"
                       : "text-lg font-bold text-gray-400"
                   }`}>
                     {team.rank}
@@ -155,7 +155,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Total Points */}
                   <div className={`col-span-1 flex items-center justify-center text-lg font-black ${
                     isTopSeven
-                      ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      ? "text-orange-500"
                       : "text-gray-400"
                   }`}>
                     {team.totalPoints}
@@ -209,7 +209,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Rank */}
                   <div className={`col-span-1 flex items-center justify-center ${
                     isTopSeven 
-                      ? "text-xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      ? "text-xl font-black text-orange-500"
                       : "text-lg font-bold text-gray-400"
                   }`}>
                     {team.rank}
@@ -263,7 +263,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Total Points */}
                   <div className={`col-span-1 flex items-center justify-center text-lg font-black ${
                     isTopSeven
-                      ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      ? "text-orange-500"
                       : "text-gray-400"
                   }`}>
                     {team.totalPoints}
