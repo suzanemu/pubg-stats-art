@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 import { Drumstick } from "lucide-react";
 import modernBg from "@/assets/modern-bg.jpg";
-import tournamentLogo from "@/assets/tournament-logo.jpg";
-import pubgLogo from "@/assets/pubg-logo.png";
 
 export interface TeamData {
   rank: number;
@@ -34,12 +32,6 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
       >
         {/* Header Section */}
         <div className="mb-12">
-          {/* Logos Section */}
-          <div className="flex items-center justify-between mb-8">
-            <img src={tournamentLogo} alt="Tournament Logo" className="h-32 w-auto object-contain" />
-            <img src={pubgLogo} alt="PUBG Logo" className="h-20 w-auto object-contain" />
-          </div>
-
           <div className="flex items-end justify-between mb-8">
             <div className="space-y-2">
               <h2 className="text-5xl font-black tracking-tight bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent uppercase">
