@@ -51,112 +51,223 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
           <div className="h-1 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 rounded-full shadow-glow"></div>
         </div>
 
-        {/* Table Container */}
-        <div className="space-y-3">
-          {/* Header Row */}
-          <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
-            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
-              Rank
+        {/* Table Container - Two Columns */}
+        <div className="grid grid-cols-2 gap-8">
+          {/* Left Column */}
+          <div className="space-y-3">
+            {/* Header Row */}
+            <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Rank
+              </div>
+              <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
+                Team Name
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                WWCD
+              </div>
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Matches
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                Place Pts
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                Kill Pts
+              </div>
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Total
+              </div>
             </div>
-            <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
-              Team Name
-            </div>
-            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-              WWCD
-            </div>
-            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
-              Matches
-            </div>
-            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-              Place Pts
-            </div>
-            <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-              Kill Pts
-            </div>
-            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
-              Total
-            </div>
+
+            {/* Team Rows - First Half */}
+            {teams.slice(0, Math.ceil(teams.length / 2)).map((team) => {
+              const isTopSeven = team.rank <= 7;
+              return (
+                <div
+                  key={team.rank}
+                  className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                    isTopSeven
+                      ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
+                      : team.rank % 2 === 0
+                      ? "bg-slate-800/50"
+                      : "bg-slate-800/30"
+                  }`}
+                >
+                  {/* Rank */}
+                  <div className={`col-span-1 flex items-center justify-center ${
+                    isTopSeven 
+                      ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-2xl font-bold text-gray-400"
+                  }`}>
+                    {team.rank}
+                  </div>
+
+                  {/* Team Name */}
+                  <div className={`col-span-3 flex items-center ${
+                    isTopSeven
+                      ? "text-xl font-bold text-white"
+                      : "text-xl font-semibold text-gray-300"
+                  }`}>
+                    {team.teamName}
+                  </div>
+
+                  {/* WWCD */}
+                  <div className="col-span-2 flex items-center justify-center gap-2">
+                    {team.firstPlaceWins > 0 && (
+                      <>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                          <Drumstick className="text-white" size={14} />
+                        </div>
+                        <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
+                      </>
+                    )}
+                    {team.firstPlaceWins === 0 && (
+                      <span className="text-lg font-semibold text-gray-500">-</span>
+                    )}
+                  </div>
+
+                  {/* Matches Played */}
+                  <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
+                    isTopSeven ? "text-white" : "text-gray-400"
+                  }`}>
+                    {team.matchesPlayed}
+                  </div>
+
+                  {/* Placement Points */}
+                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                    isTopSeven ? "text-orange-400" : "text-gray-300"
+                  }`}>
+                    {team.placementPoints}
+                  </div>
+
+                  {/* Kill Points */}
+                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                    isTopSeven ? "text-orange-400" : "text-gray-300"
+                  }`}>
+                    {team.killPoints}
+                  </div>
+
+                  {/* Total Points */}
+                  <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
+                    isTopSeven
+                      ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-gray-400"
+                  }`}>
+                    {team.totalPoints}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Team Rows */}
-          {teams.map((team) => {
-            const isTopSeven = team.rank <= 7;
-            return (
-              <div
-                key={team.rank}
-                className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
-                  isTopSeven
-                    ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
-                    : team.rank % 2 === 0
-                    ? "bg-slate-800/50"
-                    : "bg-slate-800/30"
-                }`}
-              >
-                {/* Rank */}
-                <div className={`col-span-1 flex items-center justify-center ${
-                  isTopSeven 
-                    ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
-                    : "text-2xl font-bold text-gray-400"
-                }`}>
-                  {team.rank}
-                </div>
-
-                {/* Team Name */}
-                <div className={`col-span-3 flex items-center ${
-                  isTopSeven
-                    ? "text-xl font-bold text-white"
-                    : "text-xl font-semibold text-gray-300"
-                }`}>
-                  {team.teamName}
-                </div>
-
-                {/* Wins */}
-                <div className="col-span-2 flex items-center justify-center gap-2">
-                  {team.firstPlaceWins > 0 && (
-                    <>
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                        <Drumstick className="text-white" size={14} />
-                      </div>
-                      <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
-                    </>
-                  )}
-                  {team.firstPlaceWins === 0 && (
-                    <span className="text-lg font-semibold text-gray-500">-</span>
-                  )}
-                </div>
-
-                {/* Matches Played */}
-                <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
-                  isTopSeven ? "text-white" : "text-gray-400"
-                }`}>
-                  {team.matchesPlayed}
-                </div>
-
-                {/* Placement Points */}
-                <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
-                  isTopSeven ? "text-orange-400" : "text-gray-300"
-                }`}>
-                  {team.placementPoints}
-                </div>
-
-                {/* Kill Points */}
-                <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
-                  isTopSeven ? "text-orange-400" : "text-gray-300"
-                }`}>
-                  {team.killPoints}
-                </div>
-
-                {/* Total Points */}
-                <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
-                  isTopSeven
-                    ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
-                    : "text-gray-400"
-                }`}>
-                  {team.totalPoints}
-                </div>
+          {/* Right Column */}
+          <div className="space-y-3">
+            {/* Header Row */}
+            <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Rank
               </div>
-            );
-          })}
+              <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
+                Team Name
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                WWCD
+              </div>
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Matches
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                Place Pts
+              </div>
+              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+                Kill Pts
+              </div>
+              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+                Total
+              </div>
+            </div>
+
+            {/* Team Rows - Second Half */}
+            {teams.slice(Math.ceil(teams.length / 2)).map((team) => {
+              const isTopSeven = team.rank <= 7;
+              return (
+                <div
+                  key={team.rank}
+                  className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                    isTopSeven
+                      ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
+                      : team.rank % 2 === 0
+                      ? "bg-slate-800/50"
+                      : "bg-slate-800/30"
+                  }`}
+                >
+                  {/* Rank */}
+                  <div className={`col-span-1 flex items-center justify-center ${
+                    isTopSeven 
+                      ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-2xl font-bold text-gray-400"
+                  }`}>
+                    {team.rank}
+                  </div>
+
+                  {/* Team Name */}
+                  <div className={`col-span-3 flex items-center ${
+                    isTopSeven
+                      ? "text-xl font-bold text-white"
+                      : "text-xl font-semibold text-gray-300"
+                  }`}>
+                    {team.teamName}
+                  </div>
+
+                  {/* WWCD */}
+                  <div className="col-span-2 flex items-center justify-center gap-2">
+                    {team.firstPlaceWins > 0 && (
+                      <>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                          <Drumstick className="text-white" size={14} />
+                        </div>
+                        <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
+                      </>
+                    )}
+                    {team.firstPlaceWins === 0 && (
+                      <span className="text-lg font-semibold text-gray-500">-</span>
+                    )}
+                  </div>
+
+                  {/* Matches Played */}
+                  <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
+                    isTopSeven ? "text-white" : "text-gray-400"
+                  }`}>
+                    {team.matchesPlayed}
+                  </div>
+
+                  {/* Placement Points */}
+                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                    isTopSeven ? "text-orange-400" : "text-gray-300"
+                  }`}>
+                    {team.placementPoints}
+                  </div>
+
+                  {/* Kill Points */}
+                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                    isTopSeven ? "text-orange-400" : "text-gray-300"
+                  }`}>
+                    {team.killPoints}
+                  </div>
+
+                  {/* Total Points */}
+                  <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
+                    isTopSeven
+                      ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-gray-400"
+                  }`}>
+                    {team.totalPoints}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Footer */}
