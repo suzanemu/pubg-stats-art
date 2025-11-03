@@ -56,26 +56,26 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
           {/* Left Column */}
           <div className="space-y-3">
             {/* Header Row */}
-            <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+            <div className="grid grid-cols-12 gap-3 px-4 py-3 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
                 Rank
               </div>
-              <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
+              <div className="col-span-3 text-white font-black text-xs uppercase tracking-wider">
                 Team Name
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
                 WWCD
               </div>
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
-                Matches
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
+                M
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-                Place Pts
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
+                Place
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-                Kill Pts
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
+                Kills
               </div>
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
                 Total
               </div>
             </div>
@@ -86,7 +86,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
               return (
                 <div
                   key={team.rank}
-                  className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                  className={`grid grid-cols-12 gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isTopSeven
                       ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
                       : team.rank % 2 === 0
@@ -97,8 +97,8 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Rank */}
                   <div className={`col-span-1 flex items-center justify-center ${
                     isTopSeven 
-                      ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
-                      : "text-2xl font-bold text-gray-400"
+                      ? "text-xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-lg font-bold text-gray-400"
                   }`}>
                     {team.rank}
                   </div>
@@ -106,50 +106,50 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Team Name */}
                   <div className={`col-span-3 flex items-center ${
                     isTopSeven
-                      ? "text-xl font-bold text-white"
-                      : "text-xl font-semibold text-gray-300"
+                      ? "text-base font-bold text-white"
+                      : "text-base font-semibold text-gray-300"
                   }`}>
                     {team.teamName}
                   </div>
 
                   {/* WWCD */}
-                  <div className="col-span-2 flex items-center justify-center gap-2">
+                  <div className="col-span-2 flex items-center justify-center gap-1">
                     {team.firstPlaceWins > 0 && (
                       <>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                          <Drumstick className="text-white" size={14} />
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                          <Drumstick className="text-white" size={12} />
                         </div>
-                        <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
+                        <span className="text-sm font-bold text-white">{team.firstPlaceWins}</span>
                       </>
                     )}
                     {team.firstPlaceWins === 0 && (
-                      <span className="text-lg font-semibold text-gray-500">-</span>
+                      <span className="text-sm font-semibold text-gray-500">-</span>
                     )}
                   </div>
 
                   {/* Matches Played */}
-                  <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
+                  <div className={`col-span-1 flex items-center justify-center text-sm font-semibold ${
                     isTopSeven ? "text-white" : "text-gray-400"
                   }`}>
                     {team.matchesPlayed}
                   </div>
 
                   {/* Placement Points */}
-                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  <div className={`col-span-2 flex items-center justify-center text-base font-bold ${
                     isTopSeven ? "text-orange-400" : "text-gray-300"
                   }`}>
                     {team.placementPoints}
                   </div>
 
                   {/* Kill Points */}
-                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  <div className={`col-span-2 flex items-center justify-center text-base font-bold ${
                     isTopSeven ? "text-orange-400" : "text-gray-300"
                   }`}>
                     {team.killPoints}
                   </div>
 
                   {/* Total Points */}
-                  <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
+                  <div className={`col-span-1 flex items-center justify-center text-lg font-black ${
                     isTopSeven
                       ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
                       : "text-gray-400"
@@ -164,26 +164,26 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
           {/* Right Column */}
           <div className="space-y-3">
             {/* Header Row */}
-            <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+            <div className="grid grid-cols-12 gap-3 px-4 py-3 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
                 Rank
               </div>
-              <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
+              <div className="col-span-3 text-white font-black text-xs uppercase tracking-wider">
                 Team Name
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
                 WWCD
               </div>
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
-                Matches
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
+                M
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-                Place Pts
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
+                Place
               </div>
-              <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-                Kill Pts
+              <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
+                Kills
               </div>
-              <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+              <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
                 Total
               </div>
             </div>
@@ -194,7 +194,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
               return (
                 <div
                   key={team.rank}
-                  className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                  className={`grid grid-cols-12 gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isTopSeven
                       ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
                       : team.rank % 2 === 0
@@ -205,8 +205,8 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Rank */}
                   <div className={`col-span-1 flex items-center justify-center ${
                     isTopSeven 
-                      ? "text-3xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
-                      : "text-2xl font-bold text-gray-400"
+                      ? "text-xl font-black bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
+                      : "text-lg font-bold text-gray-400"
                   }`}>
                     {team.rank}
                   </div>
@@ -214,50 +214,50 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {/* Team Name */}
                   <div className={`col-span-3 flex items-center ${
                     isTopSeven
-                      ? "text-xl font-bold text-white"
-                      : "text-xl font-semibold text-gray-300"
+                      ? "text-base font-bold text-white"
+                      : "text-base font-semibold text-gray-300"
                   }`}>
                     {team.teamName}
                   </div>
 
                   {/* WWCD */}
-                  <div className="col-span-2 flex items-center justify-center gap-2">
+                  <div className="col-span-2 flex items-center justify-center gap-1">
                     {team.firstPlaceWins > 0 && (
                       <>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                          <Drumstick className="text-white" size={14} />
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                          <Drumstick className="text-white" size={12} />
                         </div>
-                        <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
+                        <span className="text-sm font-bold text-white">{team.firstPlaceWins}</span>
                       </>
                     )}
                     {team.firstPlaceWins === 0 && (
-                      <span className="text-lg font-semibold text-gray-500">-</span>
+                      <span className="text-sm font-semibold text-gray-500">-</span>
                     )}
                   </div>
 
                   {/* Matches Played */}
-                  <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
+                  <div className={`col-span-1 flex items-center justify-center text-sm font-semibold ${
                     isTopSeven ? "text-white" : "text-gray-400"
                   }`}>
                     {team.matchesPlayed}
                   </div>
 
                   {/* Placement Points */}
-                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  <div className={`col-span-2 flex items-center justify-center text-base font-bold ${
                     isTopSeven ? "text-orange-400" : "text-gray-300"
                   }`}>
                     {team.placementPoints}
                   </div>
 
                   {/* Kill Points */}
-                  <div className={`col-span-2 flex items-center justify-center text-xl font-bold ${
+                  <div className={`col-span-2 flex items-center justify-center text-base font-bold ${
                     isTopSeven ? "text-orange-400" : "text-gray-300"
                   }`}>
                     {team.killPoints}
                   </div>
 
                   {/* Total Points */}
-                  <div className={`col-span-1 flex items-center justify-center text-2xl font-black ${
+                  <div className={`col-span-1 flex items-center justify-center text-lg font-black ${
                     isTopSeven
                       ? "bg-gradient-to-br from-orange-500 to-amber-500 bg-clip-text text-transparent"
                       : "text-gray-400"
