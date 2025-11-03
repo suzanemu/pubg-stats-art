@@ -78,34 +78,49 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
 
         {/* Table Rows */}
         <div className="space-y-1">
-          {teams.map((team, index) => (
-            <div
-              key={index}
-              className={`grid grid-cols-7 gap-2 ${
-                index % 2 === 0 ? "bg-[hsl(var(--table-row-dark))]" : "bg-[hsl(var(--table-row-light))]"
-              }`}
-            >
-              <div className="text-accent-foreground font-black text-center py-4 px-2 flex items-center justify-center text-lg">
-                {team.rank}
+          {teams.map((team, index) => {
+            const isTopSeven = team.rank <= 7;
+            return (
+              <div
+                key={index}
+                className={`grid grid-cols-7 gap-2 ${
+                  isTopSeven 
+                    ? "bg-gradient-to-r from-accent/20 to-accent/10 border-l-4 border-accent" 
+                    : index % 2 === 0 
+                    ? "bg-[hsl(var(--table-row-dark))]" 
+                    : "bg-[hsl(var(--table-row-light))]"
+                }`}
+              >
+                <div className={`font-black text-center py-4 px-2 flex items-center justify-center text-lg ${
+                  isTopSeven ? "text-accent" : "text-accent-foreground"
+                }`}>
+                  {team.rank}
+                </div>
+                <div className={`col-span-2 font-bold py-4 px-4 flex items-center text-base uppercase tracking-wide ${
+                  isTopSeven ? "text-accent" : "text-white"
+                }`}>
+                  {team.teamName}
+                </div>
+                <div className="text-white font-bold text-center py-4 px-2 flex items-center justify-center">
+                  <span className="text-accent text-xl">✓</span>
+                  <span className="ml-2">{team.firstPlaceWins}</span>
+                </div>
+                <div className={`font-bold text-center py-4 px-2 flex items-center justify-center text-lg ${
+                  isTopSeven ? "text-accent" : "text-white"
+                }`}>
+                  {team.placementPoints}
+                </div>
+                <div className={`font-bold text-center py-4 px-2 flex items-center justify-center text-lg ${
+                  isTopSeven ? "text-accent" : "text-white"
+                }`}>
+                  {team.killPoints}
+                </div>
+                <div className="text-accent font-black text-center py-4 px-2 flex items-center justify-center text-xl">
+                  {team.totalPoints}
+                </div>
               </div>
-              <div className="col-span-2 text-white font-bold py-4 px-4 flex items-center text-base uppercase tracking-wide">
-                {team.teamName}
-              </div>
-              <div className="text-white font-bold text-center py-4 px-2 flex items-center justify-center">
-                <span className="text-accent text-xl">✓</span>
-                <span className="ml-2">{team.firstPlaceWins}</span>
-              </div>
-              <div className="text-white font-bold text-center py-4 px-2 flex items-center justify-center text-lg">
-                {team.placementPoints}
-              </div>
-              <div className="text-white font-bold text-center py-4 px-2 flex items-center justify-center text-lg">
-                {team.killPoints}
-              </div>
-              <div className="text-accent font-black text-center py-4 px-2 flex items-center justify-center text-xl">
-                {team.totalPoints}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Footer */}
