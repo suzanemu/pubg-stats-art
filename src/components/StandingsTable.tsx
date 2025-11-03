@@ -34,16 +34,20 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
         <div className="mb-12">
           <div className="flex items-end justify-between mb-8">
             <div className="space-y-2">
-              <h2 className="text-5xl font-black tracking-tight bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent uppercase">
-                {title}
-              </h2>
+              <div className="bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-3 rounded-lg inline-block">
+                <h2 className="text-5xl font-black tracking-tight text-white uppercase">
+                  {title}
+                </h2>
+              </div>
               <p className="text-lg font-semibold text-gray-400 uppercase tracking-wider">
                 {subtitle}
               </p>
             </div>
             <div className="text-right">
-              <div className="text-7xl font-black bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent uppercase leading-none">
-                {day}
+              <div className="bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 px-8 py-4 rounded-lg inline-block">
+                <div className="text-7xl font-black text-white uppercase leading-none">
+                  {day}
+                </div>
               </div>
             </div>
           </div>
