@@ -67,7 +67,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                 WWCD
               </div>
               <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
-                M
+                MP
               </div>
               <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
                 Place
@@ -175,7 +175,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                 WWCD
               </div>
               <div className="col-span-1 text-white font-black text-xs uppercase tracking-wider text-center">
-                M
+                MP
               </div>
               <div className="col-span-2 text-white font-black text-xs uppercase tracking-wider text-center">
                 Place
