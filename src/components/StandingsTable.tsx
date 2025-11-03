@@ -54,11 +54,11 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
         {/* Table Container */}
         <div className="space-y-3">
           {/* Header Row */}
-          <div className="grid grid-cols-13 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+          <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
             <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
               Rank
             </div>
-            <div className="col-span-4 text-white font-black text-sm uppercase tracking-wider">
+            <div className="col-span-3 text-white font-black text-sm uppercase tracking-wider">
               Team Name
             </div>
             <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
@@ -84,7 +84,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
             return (
               <div
                 key={team.rank}
-                className={`grid grid-cols-13 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
                   isTopSeven
                     ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
                     : team.rank % 2 === 0
@@ -102,7 +102,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                 </div>
 
                 {/* Team Name */}
-                <div className={`col-span-4 flex items-center ${
+                <div className={`col-span-3 flex items-center ${
                   isTopSeven
                     ? "text-xl font-bold text-white"
                     : "text-xl font-semibold text-gray-300"
