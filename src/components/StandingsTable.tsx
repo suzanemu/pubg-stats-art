@@ -61,7 +61,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
               Team Name
             </div>
             <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
-              Wins
+              WWCD
             </div>
             <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
               Place Pts
