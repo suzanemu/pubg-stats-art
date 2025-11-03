@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { Drumstick } from "lucide-react";
 import modernBg from "@/assets/modern-bg.jpg";
 
 export interface TeamData {
@@ -111,7 +112,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {team.firstPlaceWins > 0 && (
                     <>
                       <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                        <span className="text-white text-xs font-black">✓</span>
+                        <Drumstick className="text-white" size={14} />
                       </div>
                       <span className="text-lg font-bold text-white">{team.firstPlaceWins}</span>
                     </>
