@@ -54,7 +54,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
         {/* Table Container */}
         <div className="space-y-3">
           {/* Header Row */}
-          <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
+          <div className="grid grid-cols-13 gap-4 px-6 py-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-glow-lg">
             <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
               Rank
             </div>
@@ -63,6 +63,9 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
             </div>
             <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
               WWCD
+            </div>
+            <div className="col-span-1 text-white font-black text-sm uppercase tracking-wider text-center">
+              Matches
             </div>
             <div className="col-span-2 text-white font-black text-sm uppercase tracking-wider text-center">
               Place Pts
@@ -81,7 +84,7 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
             return (
               <div
                 key={team.rank}
-                className={`grid grid-cols-12 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
+                className={`grid grid-cols-13 gap-4 px-6 py-5 rounded-xl transition-all duration-200 ${
                   isTopSeven
                     ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border-l-4 border-orange-500 shadow-lg"
                     : team.rank % 2 === 0
@@ -120,6 +123,13 @@ export const StandingsTable = forwardRef<HTMLDivElement, StandingsTableProps>(
                   {team.firstPlaceWins === 0 && (
                     <span className="text-lg font-semibold text-gray-500">-</span>
                   )}
+                </div>
+
+                {/* Matches Played */}
+                <div className={`col-span-1 flex items-center justify-center text-lg font-semibold ${
+                  isTopSeven ? "text-white" : "text-gray-400"
+                }`}>
+                  {team.matchesPlayed}
                 </div>
 
                 {/* Placement Points */}
